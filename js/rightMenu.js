@@ -169,6 +169,30 @@ function translateInitialization() {
         translateButtonObject.addEventListener('click', translatePage, false);
     }
 }
+function copyWordsLink() {
+    // 获取要复制的链接地址
+    var linkToCopy = location.href + '#articleBody';
+  
+    // 创建一个隐藏的 input 元素
+    var input = document.createElement('input');
+    input.type = 'text';
+    input.value = linkToCopy;
+    input.style.display = 'none';
+    document.body.appendChild(input);
+  
+    // 选中 input 元素中的文本
+    input.select();
+  
+    // 执行复制操作
+    document.execCommand('copy');
+}
+  
+  // 将复制链接函数注册到右键菜单
+  $(".rightMenu-item[href*='rmf.copyWordsLink()']").on("click", function () {
+    removeRightMenu();
+    copyWordsLink();
+});
+  
 $('#menu-backward').on('click', function () { window.history.back(); });
 $('#menu-forward').on('click', function () { window.history.forward(); });
 $('#menu-refresh').on('click', function () { window.location.reload(); });
@@ -178,6 +202,25 @@ $('#menu-home').on('click', function () { window.location.href = window.location
 $('#menu-translate').on('click', function () {
     removeRightMenu();
     translateInitialization();
+});
+// 复制文本内容
+$("#menu-copy").on("click", function () {
+    removeRightMenu();
+    
+    // 获取需要复制的文本内容
+    var textToCopy = "这里是需要复制的文本内容";
+    
+    // 将文本内容添加到一个隐藏的 input 元素中
+    var input = $("<input>").val(textToCopy).appendTo("body").css("display", "none");
+    
+    // 选择 input 元素中的文本
+    input.select();
+    
+    // 执行复制操作
+    document.execCommand('copy');
+    
+    // 删除添加的 input 元素
+    input.remove();
 });
 $(".menu-link").on("click", function () {
     removeRightMenu()
@@ -191,3 +234,5 @@ $("#rightmenu-mask").contextmenu(function () {
     removeRightMenu();
     return false;
 });
+
+    
