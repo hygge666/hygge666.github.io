@@ -203,25 +203,42 @@ $('#menu-translate').on('click', function () {
     removeRightMenu();
     translateInitialization();
 });
-// 复制文本内容
 $("#menu-copy").on("click", function () {
     removeRightMenu();
-    
+
     // 获取需要复制的文本内容
     var textToCopy = "这里是需要复制的文本内容";
-    
+
     // 将文本内容添加到一个隐藏的 input 元素中
     var input = $("<input>").val(textToCopy).appendTo("body").css("display", "none");
-    
+
     // 选择 input 元素中的文本
     input.select();
-    
+
     // 执行复制操作
     document.execCommand('copy');
-    
+
     // 删除添加的 input 元素
     input.remove();
-});
+
+    // 弹出通知提示
+    debounce(function () {
+        new Vue({
+            data: function () {
+                this.$notify({
+                    title: "恭喜！复制成功🍬",
+                    message: "若要转载最好保留原文链接哦，给你一个大大的赞！",
+                    position: 'top-left',
+                    offset: 50,
+                    showClose: true,
+                    type: "success",
+                    duration: 5000
+                });
+            }
+        })
+    }, 300);
+})
+
 $(".menu-link").on("click", function () {
     removeRightMenu()
 });
@@ -234,5 +251,4 @@ $("#rightmenu-mask").contextmenu(function () {
     removeRightMenu();
     return false;
 });
-
     
