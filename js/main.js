@@ -112,7 +112,7 @@ document.addEventListener('DOMContentLoaded', function () {
         }
       }
     }
-
+ 
     // click events
     const highlightCopyFn = (ele) => {
       const $buttonParent = ele.parentNode

@@ -251,4 +251,3 @@ $("#rightmenu-mask").contextmenu(function () {
     removeRightMenu();
     return false;
 });
-    

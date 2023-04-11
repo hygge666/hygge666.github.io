@@ -1,5 +1,3 @@
-function whenDOMReady() {
-    // pjax加载完成（切换页面）后需要执行的函数和代码
 window.onscroll = percent;// 执行函数
 // 页面百分比
 function percent() {
@@ -16,4 +14,4 @@ function percent() {
         up.childNodes[1].style.display = 'none'
         up.childNodes[0].style.display = 'block'
     }
-}}
+}
